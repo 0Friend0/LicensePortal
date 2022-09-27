@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+<div class="container-md ">
+
+    <a type="button" class="btn btn-warning" href="{% url 'license-update' license.id %}">Update</a>
+    <a type="button" class="btn btn-danger" href="{% url 'license-delete' license.id %}">Delete</a>
+    
+    
+    <div class="container-md">
+    <h1>{{ license.name }} </h1></p>
+    <p class="fs-5">Expiration date: {{ license.expiration_date }}</p>
+    <p class="fs-5">Client name: <a href="{% url 'client' license.client.id %}"> {{ license.client.name }}</a></p>
+    
+    </div>
+
+
+
+{% endblock content %}

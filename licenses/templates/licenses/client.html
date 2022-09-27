@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container-md ">
+
+<a type="button" class="btn btn-warning" href="{% url 'client-update' client_data.id %}">Update</a>
+<a type="button" class="btn btn-danger" href="{% url 'client-delete' client_data.id %}">Delete</a>
+
+
+<div class="container-md">
+<h1>{{ client_data.name }} </h1></p>
+<p class="fs-5">Contact: {{ client_data.admin_poc }}</p>
+
+</div>
+
+<div class="container-md">
+    <table class="table table-striped table-sm table-bordered">
+        <thead class="thead-light">
+        <tr>
+            <th scope="col">License Name</th>
+            <th scope="col">Expiration Date</th>
+        </tr>
+        </thead>
+        <tbody class="table-group-divider">
+            {% for license in licenses_list %}
+            <tr>
+                <td><a href="{% url 'license' license.id %}">{{ license.name }}</a></td>
+                <td>{{ license.expiration_date }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+
+
+{% endblock content %}

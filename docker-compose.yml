@@ -1,0 +1,31 @@
+version: '3.8'
+services:
+  # Django Application
+  django:
+    build: .
+    volumes:
+      - .:/app
+    ports:
+      - 8000:8000
+    image: django:django_image
+    container_name: django_container
+    command: python manage.py runserver 0.0.0.0:8000
+
+  # Redis
+  redis:
+    image: redis:alpine
+    container_name: redis
+
+  # Celery
+  celery:
+    restart: always
+    build:
+      context: .
+    command: celery -A license_portal worker -B -l DEBUG
+    volumes:
+      - .:/app
+    container_name: celery
+    depends_on: 
+      - django
+      - redis
+

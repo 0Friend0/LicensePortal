@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container-md">
+    <table class="table table-striped table-sm table-bordered">
+        <thead class="thead-light">
+        <tr>
+            <th scope="col" style="width: 40%">Client</th>
+            <th scope="col" style="width: 40%">Name</th>
+            <th scope="col" style="width: 20%">Expiration Date</th>
+        </tr>
+        </thead>
+        <tbody class="table-group-divider">
+            {% for license in licenses %}
+            <tr>
+                <td><a href="{% url 'client' license.client.id %}">{{ license.client.name }}</a></td>
+                <td><a href="{% url 'license' license.id %}">{{ license.name }}</a></td>
+                <td>{{ license.expiration_date }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+
+
+{% endblock content %}
